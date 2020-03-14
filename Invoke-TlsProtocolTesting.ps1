@@ -26,15 +26,6 @@
     Array of objects for the list of servers, ports, and protocol names (space delimited) to test. Can be piped from an Import-Csv cmdlet.
     Expects the following case-insensitive property names: Host, Port, Protocol
 
-.PARAMETER Server
-    The server list to test
-
-.PARAMETER Port
-    The port list to test
-
-.PARAMETER Protocol
-    The protocol list to test.
-
 .PARAMETER Taskers
     Computers to distribute the load between. Defaults to localhost only.
 
@@ -53,23 +44,14 @@
 #>
 
 [CmdletBinding(
-    SupportsShouldProcess,
-    DefaultParameterSetName = "DirectInput"
+    SupportsShouldProcess
 )]
 param (
     [Parameter(
         Mandatory,
-        ValueFromPipeline,
-        ParameterSetName = "ExternalData"
+        ValueFromPipeline
     )]
-    $InputObject,
-
-    [Parameter(Mandatory, ParameterSetName = "DirectInput")]
-    [string[]]$Server,
-    [Parameter(Mandatory, ParameterSetName = "DirectInput")]
-    [int32[]]$Port = 443,
-    [Parameter(Mandatory, ParameterSetName = "DirectInput")]
-    [string[]]$Protocol
+    $InputObject
 )
 
 begin {
